@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: GitHubAccessAnalyzer
+
+server:
+  port: 8080 #default port not mandatory to mention in yaml file
+
+github:
+  token: ${GITHUB_TOKEN}
+  base-url: ${GITHUB_BASE_URL}
