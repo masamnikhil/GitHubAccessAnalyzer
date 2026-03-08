@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserAccessReport {
+public class AccessDetail {
 
-    private String user;
-    private List<AccessDetail> repositories;
+    private String repoName;
+    private Permissions permissions;
+    private String roleName;
+
 }
