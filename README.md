@@ -24,10 +24,10 @@ To run the Application
                        ./mvnw spring-boot:run   # Linux/macOS
 
 Application will run at port 8080.
-Adjust concurrency to avoid hitting GitHub rate limits if your org is very large.
+Adjust concurrency in application.yaml to avoid hitting GitHub rate limits if your org is very large.
 
 ## calling endpoint
-call the endpoint : http://localhost:8080/api/github/access-report/{org}
+call the endpoint : http://localhost:8080/api/github/access-report/{org}  using @PathVariable
 
 Output :
  [
