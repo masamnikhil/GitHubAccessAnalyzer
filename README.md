@@ -26,13 +26,13 @@ To run the Application
 Application will run at port 8080.
 Adjust concurrency in application.yaml to avoid hitting GitHub rate limits if your org is very large.
 
-## calling endpoint
-call the endpoint : http://localhost:8080/api/github/access-report/{org}  using @PathVariable
+## calling endpoint 
+call the endpoint using postman : http://localhost:8080/api/github/access-report/{org}  using @PathVariable
 
 Output :
  [
   {
-    "userLogin": "alice",
+    "user": "alice",
     "repositories": [
     {
         "repoName": "project-alpha",
@@ -59,7 +59,7 @@ Output :
     ]
   },
   {
-    "userLogin": "bob",
+    "user": "bob",
     "repositories": [
       {
         "repoName": "project-alpha",
@@ -77,7 +77,7 @@ Output :
 ]
 
 Explanation
-userLogin -> GitHub username
+user -> GitHub username
 repositories -> List of repos the user has access to
 permissions -> GitHub permissions flags (admin, push, pull, maintain, triage)
 roleName -> GitHub role on that repository (admin, maintain, write, read)
