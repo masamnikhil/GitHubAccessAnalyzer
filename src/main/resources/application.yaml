@@ -8,3 +8,4 @@ server:
 github:
   token: ${GITHUB_TOKEN}
   base-url: ${GITHUB_BASE_URL}
+  concurrency: 5

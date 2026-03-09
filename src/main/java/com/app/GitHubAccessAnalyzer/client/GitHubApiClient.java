@@ -5,6 +5,7 @@ import com.app.GitHubAccessAnalyzer.DTOs.RepositoryResponse;
 import com.app.GitHubAccessAnalyzer.exceptionHandler.ForbiddenException;
 import com.app.GitHubAccessAnalyzer.exceptionHandler.RateLimitExceededException;
 import com.app.GitHubAccessAnalyzer.exceptionHandler.UnauthorizedException;
+import com.app.GitHubAccessAnalyzer.properties.GitHubProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -20,6 +21,8 @@ import java.util.List;
 public class GitHubApiClient {
 
     private final WebClient gitHubWebClient;
+
+    private final GitHubProperties props;
 
     public Flux<RepositoryResponse> getRepositories(String org) {
 
@@ -39,7 +42,7 @@ public class GitHubApiClient {
                                                 .filter(ex -> !(ex instanceof UnauthorizedException || ex instanceof RateLimitExceededException))
                                         )
 
-                        , 5)
+                        , props.getConcurrency())
                 .takeUntil(List::isEmpty)
                 .flatMapIterable(list -> list);
     }
@@ -63,7 +66,7 @@ public class GitHubApiClient {
                                         .retryWhen(
                                                 Retry.backoff(3, Duration.ofSeconds(1))
                                                         .filter(ex -> !(ex instanceof UnauthorizedException || ex instanceof RateLimitExceededException))
-                ), 5)
+                ), props.getConcurrency())
 
                 .takeUntil(List::isEmpty)
                 .flatMapIterable(list -> list);

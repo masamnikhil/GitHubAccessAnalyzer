@@ -11,4 +11,5 @@ public class GitHubProperties {
 
     private String baseUrl;
     private String token;
+    private Integer concurrency;
 }
